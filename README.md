@@ -22,7 +22,7 @@ Pass the following option on startup to alter behaviour:
  - **rewrite-unauth** rewrite sender on mail from non-authenticated sessions, will use the entry with empty username from identity database (see third example in the **DATABASE FILE FORMAT** section bellow), otherwise mail from non authenticated senders is left alone (defaults to `false`)
  - **allow-unknown** whether to allow emails from users with no configured identity (defaults to `false`), if `true` such mail will not be rewritten, otherwise it will be rejected. Note that this only affects mail from authenticated users but missing from the identity database. If both `rewrite-unauth` and `allow-unknown` are true, mail from non-authenticated user will NOT be rewritten.
  - **identity-db** the location of the text file of the identity database, defaults to `/etc/milter-enforce-sender/identities` (see format in **DATABASE FILE FORMAT** section bellow), you can send SIGHUP to the milter to reload the database without restarting.
- - **dry-run** whether to actually rewriter sender in messages (defaults to `false`), if `false` the milter add debugging headers instead (`X-Milter-Enforce-Sender-Header-From` if the From: header would have been rewritten and `X-Milter-Enforce-Sender-Envelope-From` if the envelope sender would have been changed). Useful for testing the exhaustiveness of the identity database.
+ - **dry-run** whether to actually rewriter sender in messages (defaults to `false`), if `true` the milter add debugging headers instead (`X-Milter-Enforce-Sender-Header-From` if the From: header would have been rewritten and `X-Milter-Enforce-Sender-Envelope-From` if the envelope sender would have been changed). Useful for testing the exhaustiveness of the identity database.
   - **separator** optionnal character to split the local part between the mailbox name and an extension. Extension are ignored when comparing mailbox names so that `bob+foo@example.com`and `bob+bar@example.com` are actually considered equals and no rewritting is done.
 
 
@@ -78,10 +78,10 @@ Line separator can be \n or \r\n.
  - The identity database format could probably be better, however it will always, by design, be a plain text file. Querying an LDAP directory or an SQL database is beyond the scope of this milter. Use an export script instead to build the text file.
 
 ## TODO
- - [] ability to use LDIF file as identity database
- - [] ability to set a default identity for a user
- - [] proper build system
- - [] better docs
+ - [ ] ability to use LDIF file as identity database
+ - [ ] ability to set a default identity for a user
+ - [ ] proper build system
+ - [ ] better docs
 
 ## LICENCE
 milter-enforce-sender
