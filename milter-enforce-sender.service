@@ -1,0 +1,17 @@
+### THIS IS AN EXAMPLE FILE, YOU NEED TO ADAPT IT TO YOUR LOCAL NEEDS
+
+[Unit]
+Description=milter-enforce-sender
+After=network.target nss-lookup.target 
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+ExecStart=/usr/local/sbin/milter-enforce-sender --dry-run=true
+User=nobody
+Group=nogroup
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
